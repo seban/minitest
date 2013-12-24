@@ -558,6 +558,12 @@ describe Minitest::Spec, :let do
     end
   end
 
+  it 'raises an error if the name is "message"' do
+    describe "let" do
+      proc { let(:message) { true } }.must_raise ArgumentError
+    end
+  end
+
   it 'procs come after dont_flip' do
     p = proc{ }
     assert_respond_to p, :call

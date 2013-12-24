@@ -224,6 +224,7 @@ class Minitest::Spec < Minitest::Test
 
     def let name, &block
       raise ArgumentError, 'name cannot begin with "test"' if name.to_s =~ /\Atest/
+      raise ArgumentError, 'cannot use name "message"' if name.to_s == "message"
       define_method name do
         @_memoized ||= {}
         @_memoized.fetch(name) { |k| @_memoized[k] = instance_eval(&block) }
